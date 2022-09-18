@@ -5,19 +5,6 @@ from .models import Cart, CartItem, Customer, Order, OrderItem, Product, Collect
 from .signals import order_created
 
 
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['id', 'title', 'description', 'slug', 'inventory',
-                  'unit_price', 'price_with_tax', 'collection']
-
-    price_with_tax = serializers.SerializerMethodField(
-        method_name='calculate_tax')
-
-    def calculate_tax(self, product: Product):
-        return product.unit_price * Decimal(1.14)
-
-
 class ProductImageSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         product_id = self.context['product_id']
@@ -26,6 +13,21 @@ class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
         fields = ['id', 'image']
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Product
+        fields = ['id', 'title', 'description', 'slug', 'inventory',
+                  'unit_price', 'price_with_tax', 'collection', 'images']
+
+    price_with_tax = serializers.SerializerMethodField(
+        method_name='calculate_tax')
+
+    def calculate_tax(self, product: Product):
+        return product.unit_price * Decimal(1.14)
 
 
 class CollectionSerializer(serializers.ModelSerializer):
