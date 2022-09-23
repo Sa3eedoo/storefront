@@ -179,3 +179,7 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 2525
 # Optionally:-
 DEFAULT_FROM_EMAIL = 'from@admin.com'
+
+ADMINS = [
+    ('Mahmoud', 'mahmoud@admin.com')
+]
