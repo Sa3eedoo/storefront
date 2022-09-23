@@ -172,7 +172,7 @@ DJOSER = {
     }
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.smpt.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'locahost'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
