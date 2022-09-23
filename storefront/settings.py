@@ -171,3 +171,11 @@ DJOSER = {
         'current_user': 'core.serializers.UserSerializer'
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smpt.EmailBackend'
+EMAIL_HOST = 'locahost'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 2525
+# Optionally:-
+DEFAULT_FROM_EMAIL = 'from@admin.com'
